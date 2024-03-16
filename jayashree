@@ -1,0 +1,22 @@
+from nemo.collections.asr.models import EncDecMultiTaskModel
+
+# Load the pre-trained model
+canary_model = EncDecMultiTaskModel.from_pretrained('nvidia/canary-1b')
+
+# Function to transcribe speech from an audio file
+def transcribe_audio(audio_file_path):
+    # Perform transcription
+    transcripts = canary_model.transcribe([audio_file_path])
+    return transcripts[0]
+
+# Example usage
+if _name_ == "_main_":
+    # Path to the audio file
+    audio_file_path = "<path_to_your_audio_file>"
+    
+    # Transcribe speech from the audio file
+    transcribed_text = transcribe_audio(audio_file_path)
+    
+    # Print the transcribed text
+    print("Transcribed text:")
+    print(transcribed_text)
